@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ParseIntPipe } from '@nestjs/common/pipes/parse-int.pipe';
-import { Nota } from './nota.entity';
+import { nota } from './nota.entity';
 import { NotasService } from './notas.service';
 
 @Controller('notas')
@@ -25,12 +25,12 @@ export class NotasController {
     return this.notasService.findOne(id);
   }
 
-  @Post() create(@Body() nota: Nota) {
+  @Post() create(@Body() nota: nota) {
     return this.notasService.createNota(nota);
   }
 
   @Patch(':id')
-  async editNota(@Body() nota: Nota, @Param('id') id: number): Promise<Nota> {
+  async editNota(@Body() nota: nota, @Param('id') id: number): Promise<nota> {
     const notaEdited = await this.notasService.editNota(id, nota);
     return notaEdited;
   }
